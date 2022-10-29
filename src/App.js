@@ -1,10 +1,7 @@
-import logo from './logo.svg';
 import React, { useState } from 'react';
 import Prompt from './componenets/Prompt';
 import Results from './componenets/Results';
 import styled from 'styled-components';
-import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
 import './App.css';
 
 function App() {
