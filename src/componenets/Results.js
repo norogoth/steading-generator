@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import styled from 'styled-components';
 import Table from 'react-bootstrap/Table';
 //import example from '../data/example.csv';
 
