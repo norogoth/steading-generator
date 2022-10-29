@@ -34,11 +34,4 @@ const Results = props => {
     );
 }
 
-const KeyValuePairDiv = styled.div`
-    display: flex;
-`
-const RegenerateButton = styled.button`
-
-`
-
 export default Results;
