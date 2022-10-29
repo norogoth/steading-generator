@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import styled from "styled-components";
 
-const Prompt = () => {
+const Prompt = (props) => {
     const steadingTypes = ["village", "outpost", "city"];
 
     const steadingOptions = steadingTypes.map( type => 
@@ -14,7 +14,7 @@ const Prompt = () => {
             <select id="steading-type">
                 {steadingOptions}
             </select>
-            <Button variant="primary">Regenerate</Button>
+            <Button variant="primary" onClick={ props.generateButtonOnClick }>Regenerate</Button>
         </SelectorDiv>
     );
 }
