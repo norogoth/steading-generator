@@ -6,18 +6,33 @@ import './App.css';
 
 function App() {
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
 
   const generateAll = () => {
-    let types = ['surroundings', 'guilds','landmarks','npc_dialogue','npc_interactions','prosperity'];
+    let types = ['surroundings', 'guilds','landmarks','npc_dialogue','npc_interactions','prosperity', 'store item', 'resources', 'black market items'];
     types.forEach( type => {
         generateType(type);
     });
     console.log('generated all');
   }
 
+  const insertUniqueByType = (item) => (oldItems) => [...oldItems.filter(i => i.type !== item.type), item]
+
+  const removeType = ( (type, dataCopy) => {
+    let newData = [...dataCopy];
+    let filteredData = [];
+    newData.forEach( obj => {
+      if (obj.type !== type) {
+        filteredData.push(obj);
+      } else {
+        console.log("bad obj:" , obj);
+      }
+    });
+    return filteredData;
+  });
+
   const generateType = (type) => {
-    fetch('./' + type + '.csv')
+    fetch('data/' + type + '.csv')
     .then(response => response.text() )
     .then( responseText => {
       //detect if one column and, if not, get headers and make object?
@@ -25,9 +40,16 @@ function App() {
       const randIndex = Math.floor(Math.random() * textArray.length);
       const randChoice =  textArray[randIndex];
       let newData = {};
-      newData[type] = randChoice;
-      console.log("Data in App:", newData);
-      setData(data => ({...data,...newData}));
+      newData['type'] = type;
+      newData['description'] = randChoice;
+      const dataCopy = [...data];
+      console.log('orig data: ', data);
+      console.log('before: ', dataCopy);
+      const filteredData = removeType(type, dataCopy); //remove old object of that type if exists
+      console.log('filteredData: ', filteredData);
+      console.log('newData: ', newData);
+      //setData([...filteredData, newData]);
+      setData(insertUniqueByType(newData));
     })
   };
 

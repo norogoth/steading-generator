@@ -6,12 +6,12 @@ import Table from 'react-bootstrap/Table';
 const Results = props => {
     const data = props.data;
     console.log({ data });
-    const ResultRows = () => (Object.keys(data).map( key => {
+    const ResultRows = () => (data.map( obj => {
         return (
-            <tr key={key}>
-                <td>{key}</td>
-                <td>{data[key]}</td>
-                <td><Button onClick={() => props.generateOneType(key)}>Regenerate</Button></td>
+            <tr key={obj.type}>
+                <td>{obj.type}</td>
+                <td>{obj.description}</td>
+                <td><Button onClick={() => props.generateOneType(obj.type)}>Regenerate</Button></td>
             </tr>
         );
     }));
