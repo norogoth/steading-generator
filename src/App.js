@@ -8,8 +8,9 @@ function App() {
 
   const [data, setData] = useState([]);
 
+  const [types] = useState(['surroundings', 'guilds','landmarks','npc_dialogue','npc_interactions','prosperity', 'store item', 'resources', 'black market items']);
+
   const generateAll = () => {
-    let types = ['surroundings', 'guilds','landmarks','npc_dialogue','npc_interactions','prosperity', 'store item', 'resources', 'black market items'];
     types.forEach( type => {
         generateType(type);
     });
@@ -17,19 +18,6 @@ function App() {
   }
 
   const insertUniqueByType = (item) => (oldItems) => [...oldItems.filter(i => i.type !== item.type), item]
-
-  const removeType = ( (type, dataCopy) => {
-    let newData = [...dataCopy];
-    let filteredData = [];
-    newData.forEach( obj => {
-      if (obj.type !== type) {
-        filteredData.push(obj);
-      } else {
-        console.log("bad obj:" , obj);
-      }
-    });
-    return filteredData;
-  });
 
   const generateType = (type) => {
     fetch('data/' + type + '.csv')
@@ -42,13 +30,6 @@ function App() {
       let newData = {};
       newData['type'] = type;
       newData['description'] = randChoice;
-      const dataCopy = [...data];
-      console.log('orig data: ', data);
-      console.log('before: ', dataCopy);
-      const filteredData = removeType(type, dataCopy); //remove old object of that type if exists
-      console.log('filteredData: ', filteredData);
-      console.log('newData: ', newData);
-      //setData([...filteredData, newData]);
       setData(insertUniqueByType(newData));
     })
   };
@@ -60,7 +41,7 @@ function App() {
           <h1>Steading Generator</h1>
           <p>Select a steading type and hit "generate"</p>
         </TitleDiv>
-        <Prompt  generateButtonOnClick={generateAll}/>
+        <Prompt types={types} generateButtonOnClick={generateAll}/>
         <Results generateOneType={generateType} data={data}/>
       </header>
     </div>

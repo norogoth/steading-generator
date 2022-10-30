@@ -1,19 +1,20 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import styled from "styled-components";
+import Customizer from "./Customizer";
 
 const Prompt = (props) => {
+    /*
     const steadingTypes = ["village", "outpost", "city"];
 
     const steadingOptions = steadingTypes.map( type => 
         <option key={type} value="{type}">{type}</option>
     );
+    */
 
     return (
         <SelectorDiv>
-            <select id="steading-type">
-                {steadingOptions}
-            </select>
+            <Customizer types={props.types}/>
             <Button variant="primary" onClick={ props.generateButtonOnClick }>Regenerate</Button>
         </SelectorDiv>
     );
