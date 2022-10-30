@@ -8,7 +8,7 @@ function App() {
 
   const [data, setData] = useState([]);
 
-  const [types] = useState(['surroundings', 'guilds','landmarks','npc_dialogue','npc_interactions','prosperity', 'store item', 'resources', 'black market items']);
+  const [types] = useState(['surroundings', 'guilds','landmarks','npc_dialogue','npc_interactions','prosperity', 'store item', 'resources', 'black market items', 'magical item']);
 
   const generateAll = () => {
     types.forEach( type => {
@@ -39,7 +39,7 @@ function App() {
       <header className="App-header">
         <TitleDiv>
           <h1>Steading Generator</h1>
-          <p>Select a steading type and hit "generate"</p>
+          <p>Select generate to get random village attributes</p>
         </TitleDiv>
         <Prompt types={types} generateButtonOnClick={generateAll}/>
         <Results generateOneType={generateType} data={data}/>

@@ -24,6 +24,7 @@ const Customizer = (props) => {
             </Button>
             <Collapse in={open}>
                 <div id="example-collapse-text">
+                    This feature does not work yet
                     <TypeCheckboxes/>
                 </div>
       </Collapse>
