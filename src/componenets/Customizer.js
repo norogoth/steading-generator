@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import styled from "styled-components";
 import Collapse from 'react-bootstrap/Collapse';
 import Button from 'react-bootstrap/Button';
+import Incrementer from './Incrementer';
 
 const Customizer = (props) => {
     const [open, setOpen] = useState(false);
     const TypeCheckboxes = () => (props.types.map( type => {
         return (
-            <li>
-                <input type="checkbox" name={type}/>
-                <label>{type}</label>
-            </li>
+            <div key={type.name}>
+                <Incrementer type={type}/>
+                <label>{type.name}</label>
+            </div>
         );
     })); 
 
@@ -27,7 +28,7 @@ const Customizer = (props) => {
                     This feature does not work yet
                     <TypeCheckboxes/>
                 </div>
-      </Collapse>
+            </Collapse>
         </CustomizerDiv>
     );
 }

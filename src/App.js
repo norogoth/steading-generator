@@ -8,11 +8,22 @@ function App() {
 
   const [data, setData] = useState([]);
 
-  const [types] = useState(['surroundings', 'guilds','landmarks','npc_dialogue','npc_interactions','prosperity', 'store item', 'resources', 'black market items', 'magical item']);
+  const [types] = useState([
+    {name:'surroundings',count:1},
+    {name:'guilds',count:1},
+    {name:'landmarks',count:1},
+    {name:'npc_dialogue',count:1},
+    {name:'npc_interactions',count:1},
+    {name:'prosperity',count:1},
+    {name:'store item',count:1},
+    {name:'resources',count:1},
+    {name:'black market items',count:1},
+    {name:'magical item',count:1}
+  ]);
 
   const generateAll = () => {
     types.forEach( type => {
-        generateType(type);
+        generateType(type.name);
     });
     console.log('generated all');
   }
